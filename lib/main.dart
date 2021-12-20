@@ -210,38 +210,112 @@ class TTInfoRoute extends StatelessWidget {
   }
 }
 
-class AddCreditCardRoute extends StatelessWidget {
-  const AddCreditCardRoute({Key? key}) : super(key: key);
+class _AddCreditCardRoute extends StatefulWidget {
+  const _AddCreditCardRoute({Key? key}) : super(key: key);
+
+  @override
+  State<_AddCreditCardRoute> createState() => AddCreditCardRoute();
+}
+
+class AddCreditCardRoute extends State<_AddCreditCardRoute> {
+  String creditCardNumber = "";
+  String creditCardExpiry = "";
+  String creditCardCVV = "";
+  String creditCardOwner = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Second Route"),
+          title: const Text("Yeni Kredi Kartı Bilgisi"),
         ),
         body: Column(
           children: [
+            const Center(
+              child: Text(
+                "Kredi Kartı Sahibi Adı",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (text) {
+                    creditCardOwner = text;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: "Ahmet Kodlayan",
+                      hintStyle: TextStyle(fontSize: 20)),
+                ),
+              ),
+            ),
             const Center(
               child: Text(
                 "Kredi Kartı Numarası",
                 style: TextStyle(fontSize: 20),
               ),
             ),
-            const Center(
+            Center(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: TextField(
-                  decoration: InputDecoration(
+                  onChanged: (val) {
+                    creditCardNumber = val;
+                  },
+                  decoration: const InputDecoration(
                       hintText: "XXXX-XXXX-XXXX-XXXX",
                       hintStyle: TextStyle(fontSize: 20)),
                 ),
               ),
             ),
-            Center(
-              child: Row(
-                children: const [Text("Wololo")],
+            const Center(
+              child: Text(
+                "Son Kullanma",
+                style: TextStyle(fontSize: 20),
               ),
-            )
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (val) {
+                    creditCardExpiry = val;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: "XX-XX", hintStyle: TextStyle(fontSize: 20)),
+                ),
+              ),
+            ),
+            const Center(
+              child: Text(
+                "CVV",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (val) {
+                    creditCardCVV = val;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: "XXX", hintStyle: TextStyle(fontSize: 20)),
+                ),
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  print(creditCardNumber);
+                  print(creditCardOwner);
+                  print(creditCardExpiry);
+                  print(creditCardCVV);
+                },
+                child: const Text(
+                  "Kaydet",
+                  style: TextStyle(fontSize: 20),
+                ))
           ],
         ));
   }
@@ -341,7 +415,7 @@ class AddPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AddCreditCardRoute()),
+                          builder: (context) => _AddCreditCardRoute()),
                     ),
                   },
                 ),
