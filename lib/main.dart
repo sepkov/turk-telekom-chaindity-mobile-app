@@ -150,6 +150,70 @@ class TwoFACard extends StatelessWidget {
   }
 }
 
+class TTInfoRouteQR extends StatelessWidget {
+  const TTInfoRouteQR({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Türk Telekom Kimliğim"),
+        ),
+        body: Column(
+          children: [
+            Center(
+              child: InkWell(
+                child: Image.asset(
+                  "assets/main_page/qr.png",
+                  height: 400,
+                  width: 400,
+                ),
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TTInfoRoute()),
+                  );
+                },
+                child: const Text(
+                  "Düz Metin Görüntüle",
+                  style: TextStyle(fontSize: 30),
+                ))
+          ],
+        ));
+  }
+}
+
+class TTInfoRouteQRBlurred extends StatelessWidget {
+  const TTInfoRouteQRBlurred({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Türk Telekom Kimliğim"),
+        ),
+        body: Center(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TTInfoRouteQR()),
+              );
+            },
+            child: Image.asset(
+              "assets/main_page/qrfp.jpg",
+              height: 400,
+              width: 400,
+            ),
+          ),
+        ));
+  }
+}
+
 class TTInfoRoute extends StatelessWidget {
   const TTInfoRoute({Key? key}) : super(key: key);
 
@@ -415,7 +479,7 @@ class AddPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => _AddCreditCardRoute()),
+                          builder: (context) => const _AddCreditCardRoute()),
                     ),
                   },
                 ),
@@ -510,7 +574,7 @@ class MainPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const TTInfoRoute()),
+                            builder: (context) => const TTInfoRouteQRBlurred()),
                       ),
                     },
                   ),
