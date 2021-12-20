@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return AddPage();
         break;
       case 2:
-        return Container(color: Colors.orange);
+        return TwoFARoute();
         break;
       default:
         return ProfilePage();
@@ -82,6 +84,67 @@ class _MyHomePageState extends State<MyHomePage> {
             _page = index;
           });
         },
+      ),
+    );
+  }
+}
+
+class TwoFARoute extends StatelessWidget {
+  const TwoFARoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Center(
+          child: Card(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                "2 FA Keyleriniz",
+                style: TextStyle(fontSize: 28),
+              ),
+            ),
+          ),
+        ),
+        TwoFACard(twofakey: Random().nextInt(999999).toString()),
+        TwoFACard(twofakey: Random().nextInt(999999).toString()),
+        TwoFACard(twofakey: Random().nextInt(999999).toString()),
+        TwoFACard(twofakey: Random().nextInt(999999).toString()),
+        TwoFACard(twofakey: Random().nextInt(999999).toString()),
+        TwoFACard(twofakey: Random().nextInt(999999).toString()),
+      ],
+    );
+  }
+}
+
+class TwoFACard extends StatelessWidget {
+  const TwoFACard({Key? key, required this.twofakey}) : super(key: key);
+
+  final String twofakey;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            children: [
+              Text(
+                twofakey,
+                style: const TextStyle(fontSize: 50),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.delete,
+                size: 50,
+                color: Colors.red,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
