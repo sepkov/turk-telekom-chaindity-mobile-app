@@ -6,7 +6,7 @@ import "@openzeppelin/contracts@4.4.0/token/ERC721/extensions/ERC721URIStorage.s
 import "@openzeppelin/contracts@4.4.0/access/Ownable.sol";
 import "@openzeppelin/contracts@4.4.0/utils/Counters.sol";
 
-contract MyToken is ERC721, ERC721URIStorage, Ownable {
+contract ChainDity is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -30,6 +30,10 @@ contract MyToken is ERC721, ERC721URIStorage, Ownable {
     function Edit(string memory uri, uint256 tokenId) external {
         require(msg.sender == ownerOf(tokenId), "Wrong Owner");
         _setTokenURI(tokenId, uri);
+    }
+
+   function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+        super._burn(tokenId);
     }
 
     function tokenURI(uint256 tokenId)
