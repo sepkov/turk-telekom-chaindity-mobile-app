@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'contract.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -586,14 +588,18 @@ class MainPage extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  MainScreenNavigateCard(
+                children: [
+                  const MainScreenNavigateCard(
                     label: "TR - Açık Kaynak\nOkul Bilgilerim",
                     imagePath: "assets/main_page/books.png",
                   ),
                   MainScreenNavigateCard(
                     label: "Felan Bank\nBilgilerim",
                     imagePath: "assets/main_page/ccard.png",
+                    clickFunction: () {
+                      ChaindityContract.main();
+                      print("Wololo");
+                    },
                   ),
                 ],
               )
